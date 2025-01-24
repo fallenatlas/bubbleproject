@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://wsb7o1b6te86"]
+[gd_scene load_steps=5 format=3 uid="uid://cophdm2m7782b"]
 
-[ext_resource type="PackedScene" uid="uid://cnb78hxaadna3" path="res://player.tscn" id="1_6qd78"]
-[ext_resource type="PackedScene" uid="uid://bbivmf5vt5h5p" path="res://cursor.tscn" id="1_lhu7a"]
-[ext_resource type="PackedScene" uid="uid://dqt1fifjp01d7" path="res://terrain.tscn" id="3_7wru5"]
+[ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
+[ext_resource type="PackedScene" path="res://cursor.tscn" id="1_lhu7a"]
+[ext_resource type="PackedScene" uid="uid://gk3v2gosh5dp" path="res://terrain.tscn" id="3_7wru5"]
+[ext_resource type="PackedScene" uid="uid://bqeien8m4eqsj" path="res://follow_enemy.tscn" id="4_pwwo5"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,3 +15,6 @@ speed = 300
 
 [node name="Terrain" parent="." instance=ExtResource("3_7wru5")]
 z_index = -1
+
+[node name="Enemy" parent="." instance=ExtResource("4_pwwo5")]
+position = Vector2(103, 174)

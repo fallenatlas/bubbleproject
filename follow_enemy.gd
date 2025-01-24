@@ -1,6 +1,6 @@
 class_name FollowEnemy extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 120.0
 #const JUMP_VELOCITY = -400.0
 
 #keep player here when found and while in range
@@ -35,23 +35,28 @@ func _physics_process(delta: float) -> void:
 	
 	# if player is not null chase
 	if (chase_player != null):
-		if (chase_player.global_position - self.global_position).length() > 15:
+		if (chase_player.global_position - self.global_position).length() > 200:
 			chase_player = null
 	
 	# check all 3 raycasts
+	if detect_raycast.is_colliding():
+		#check if is player, if so chase
+		var object = detect_raycast.get_collider()
+		var player : CharacterBody2D = object as CharacterBody2D
+		if player != null:
+			chase_player = player
+	
 	if front_raycast.is_colliding():
 		#check if is player, if so chase
 		var object = front_raycast.get_collider()
 		var player : CharacterBody2D = object as CharacterBody2D
-		if player != null:
-			chase_player = player
-		else:
-			# deviate from wall
+		if player == null:
 			add_velocity += -global_transform.x * 0.01
 	
 	# if player is not null chase
 	if chase_player != null:
-		add_velocity += (chase_player.global_position - self.global_position) * 15 #+ (player_predict * chase_player.velocity)
+		#var change = (chase_player.global_position - self.global_position)
+		add_velocity += (chase_player.global_position - self.global_position).normalized() * SPEED# + 0.5 * (player_predict * chase_player.velocity)
 	else:
 		# kinda make this random
 		if (timer > 2.0):
@@ -70,15 +75,26 @@ func _physics_process(delta: float) -> void:
 		var object = front_raycast.get_collider()
 		var player : CharacterBody2D = object as CharacterBody2D
 		if player == null:
-			add_velocity += -global_transform.y * 0.001 * (right_raycast.get_collision_point() - global_position).length()
+			if !left_raycast.is_colliding() or !front_raycast.is_colliding():
+				add_velocity += -global_transform.y * 0.001 * (right_raycast.get_collision_point() - global_position).length()
 	
 	# change the angle on the raycast
 	if look_timer > 0.5:
-		detect_raycast.rotation_degrees = -90 + randf_range(-15, 15)
+		detect_raycast.rotation_degrees = -90 + randf_range(-20, 20)
 		look_timer = 0.0
 	
-	velocity = add_velocity
+	var ang_diff = velocity.angle_to(add_velocity)
+	if abs(ang_diff) > PI/120:
+		add_velocity = velocity.normalized().rotated(ang_diff/abs(ang_diff) * PI/120) * add_velocity.length()
+	
+	velocity = add_velocity * add_velocity.length()/max(add_velocity.length(), 0.1)
 	
 	self.look_at(global_position + velocity)
 	
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	var player : CharacterBody2D = body as CharacterBody2D
+	if player != null:
+		print("kill")

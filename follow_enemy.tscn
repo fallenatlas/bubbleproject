@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqeien8m4eqsj"]
+[gd_scene load_steps=5 format=3 uid="uid://bqeien8m4eqsj"]
 
 [ext_resource type="Script" path="res://follow_enemy.gd" id="1_8jwng"]
 [ext_resource type="Texture2D" uid="uid://dy1ghof4ud5ja" path="res://icon.svg" id="2_vn3w3"]
@@ -7,7 +7,13 @@
 radius = 14.0
 height = 48.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km0wq"]
+radius = 15.0
+height = 50.0
+
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8jwng")
 
@@ -35,3 +41,12 @@ target_position = Vector2(0, 70)
 [node name="Left" type="RayCast2D" parent="."]
 rotation = -2.35619
 target_position = Vector2(0, 70)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_km0wq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
