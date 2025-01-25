@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cophdm2m7782b"]
+[gd_scene load_steps=16 format=3 uid="uid://cophdm2m7782b"]
 
 [ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
 [ext_resource type="Script" path="res://start_button.gd" id="5_5tn4p"]
@@ -9,6 +9,65 @@
 [ext_resource type="Script" path="res://pause_menu.gd" id="7_eksti"]
 [ext_resource type="Texture2D" uid="uid://drv1m7vo5q4vu" path="res://death_icon.png" id="7_yak46"]
 [ext_resource type="Texture2D" uid="uid://dx7n8nioodjjo" path="res://up_icon.png" id="8_vgteb"]
+
+[sub_resource type="Animation" id="Animation_toejm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_op07s"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ybi2d"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2rwq"]
+_data = {
+"RESET": SubResource("Animation_toejm"),
+"fade_in": SubResource("Animation_ybi2d"),
+"fade_out": SubResource("Animation_op07s")
+}
+
+[sub_resource type="Gradient" id="Gradient_enlxd"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0745098, 0.145098, 0.239216, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ip2r0"]
+gradient = SubResource("Gradient_enlxd")
 
 [node name="Node2D" type="Node2D"]
 
@@ -130,8 +189,9 @@ text = "Exit
 "
 script = ExtResource("6_5ggr0")
 
-[node name="Dead" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("heightText", "killsText", "terrain_manager", "player", "camera")]
+[node name="Dead" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("heightText", "killsText", "terrain_manager", "player", "camera", "animation")]
 visible = false
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,6 +204,7 @@ killsText = NodePath("Kills")
 terrain_manager = NodePath("../../Terrain Manager")
 player = NodePath("../../Player")
 camera = NodePath("../../Camera2D")
+animation = NodePath("../AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Dead"]
 layout_mode = 1
@@ -222,6 +283,20 @@ offset_bottom = 271.0
 text = "Exit
 "
 script = ExtResource("6_5ggr0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_h2rwq")
+}
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ip2r0")
 
 [connection signal="pressed" from="CanvasLayer/StartMenu/Start" to="CanvasLayer/StartMenu/Start" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartMenu/Exit" to="CanvasLayer/StartMenu/Exit" method="_on_pressed"]
