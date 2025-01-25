@@ -96,5 +96,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	var player : CharacterBody2D = body as CharacterBody2D
+	var bubble = body as RigidBody2D
+
 	if player != null:
 		print("kill")
+	elif bubble != null:
+		queue_free()

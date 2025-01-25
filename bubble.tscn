@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://r8xis3046frw"]
+
+[ext_resource type="Texture2D" uid="uid://eec7gvcixsfg" path="res://bubble.png" id="1_7bmn7"]
+[ext_resource type="Script" path="res://bubble.gd" id="1_wgwpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsf5f"]
+
+[node name="Bubble" type="RigidBody2D"]
+gravity_scale = -0.5
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 2.0
+script = ExtResource("1_wgwpu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7bmn7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jsf5f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
