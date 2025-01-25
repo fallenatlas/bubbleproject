@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cophdm2m7782b"]
+[gd_scene load_steps=10 format=3 uid="uid://cophdm2m7782b"]
 
 [ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
-[ext_resource type="PackedScene" path="res://cursor.tscn" id="1_lhu7a"]
 [ext_resource type="Script" path="res://start_button.gd" id="5_5tn4p"]
 [ext_resource type="PackedScene" uid="uid://bvo1ralh3j8y" path="res://camera.tscn" id="5_vuj02"]
 [ext_resource type="PackedScene" uid="uid://rw0j72pi1i6v" path="res://terrain_manager.tscn" id="5_xvisn"]
@@ -14,7 +13,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_6qd78")]
-position = Vector2(325, 173)
+position = Vector2(326, 248)
 speed = 200.0
 bubble_speed = 300.0
 

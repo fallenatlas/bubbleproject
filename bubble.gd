@@ -12,4 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	var enemy : CharacterBody2D = body as CharacterBody2D
+	if (enemy != null):
+		Events.emit_signal("enemy_kill")
 	queue_free()
