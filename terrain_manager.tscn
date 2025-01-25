@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rw0j72pi1i6v"]
+
+[ext_resource type="Script" path="res://map_manager.gd" id="1_ncx2s"]
+
+[node name="Terrain Manager" type="Node2D"]
+script = ExtResource("1_ncx2s")
