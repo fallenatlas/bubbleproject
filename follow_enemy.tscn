@@ -28,7 +28,7 @@ shape = SubResource("CapsuleShape2D_rjxsv")
 
 [node name="Detect" type="RayCast2D" parent="."]
 rotation = -1.5708
-target_position = Vector2(0, 140)
+target_position = Vector2(0, 160)
 
 [node name="Front" type="RayCast2D" parent="."]
 rotation = -1.5708

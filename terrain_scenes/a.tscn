@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://c3qefnity2t4q"]
+[gd_scene load_steps=6 format=4 uid="uid://c3qefnity2t4q"]
 
 [ext_resource type="Texture2D" uid="uid://vvrqupfx7knf" path="res://tilemap.png" id="1_evwod"]
 [ext_resource type="PackedScene" uid="uid://bqeien8m4eqsj" path="res://follow_enemy.tscn" id="2_mwlwc"]
+[ext_resource type="PackedScene" uid="uid://cfq62vg3t8wdd" path="res://jelly_fish.tscn" id="3_hiww7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_moy66"]
 texture = ExtResource("1_evwod")
@@ -30,3 +31,27 @@ rotation = 0.0897988
 [node name="Enemy2" parent="." instance=ExtResource("2_mwlwc")]
 position = Vector2(506, 150)
 rotation = 2.99477
+
+[node name="Jelly fish" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(478, 277)
+rotation = -1.5708
+
+[node name="Jelly fish2" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(462, 304)
+rotation = -1.5708
+
+[node name="Jelly fish3" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(489, 314)
+rotation = -1.5708
+
+[node name="Jelly fish4" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(187, 64)
+rotation = -1.5708
+
+[node name="Jelly fish5" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(208, 83)
+rotation = -1.5708
+
+[node name="Jelly fish6" parent="." instance=ExtResource("3_hiww7")]
+position = Vector2(183, 103)
+rotation = -1.5708

@@ -15,6 +15,7 @@ func _ready() -> void:
 	reset_position = global_position
 	reset_oxygen = oxygen
 	Events.dead.connect(_on_dead)
+	Events.syphon.connect(_on_syphoned)
 
 func reset() -> void:
 	global_position = reset_position
@@ -24,6 +25,9 @@ func reset() -> void:
 func _on_dead() -> void:
 	dead = true
 	velocity = Vector2(0,0)
+	
+func _on_syphoned(amount : float) -> void:
+	oxygen -= amount
 
 func _physics_process(delta: float) -> void:
 	if dead:
