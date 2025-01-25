@@ -6,7 +6,29 @@ extends CharacterBody2D
 
 var oxygen = 100.0
 
+var dead : bool = false
+
+var reset_position : Vector2
+var reset_oxygen
+
+func _ready() -> void:
+	reset_position = global_position
+	reset_oxygen = oxygen
+	Events.dead.connect(_on_dead)
+
+func reset() -> void:
+	global_position = reset_position
+	oxygen = reset_oxygen
+	dead = false
+
+func _on_dead() -> void:
+	dead = true
+	velocity = Vector2(0,0)
+
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+	
 	oxygen -= oxygen_rate
 	
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")

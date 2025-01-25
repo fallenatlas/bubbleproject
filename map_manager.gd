@@ -11,6 +11,14 @@ var terrain_scenes : Array = ["a.tscn", "b.tscn", "c.tscn", "d.tscn", "e.tscn"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	start_map()
+
+func start_map() -> void:
+	current_zone = 0
+	for child in get_children():
+		remove_child(child)
+		child.call_deferred("free")
+		
 	var scene = load("res://terrain_scenes/" + initial_scene).instantiate()
 	scene.name = str(current_zone)
 	add_child(scene)

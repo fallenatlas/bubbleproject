@@ -100,5 +100,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	if player != null:
 		print("kill")
+		Events.emit_signal("dead")
 	elif bubble != null:
 		queue_free()

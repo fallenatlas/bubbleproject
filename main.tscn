@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cophdm2m7782b"]
+[gd_scene load_steps=11 format=3 uid="uid://cophdm2m7782b"]
 
 [ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
-[ext_resource type="PackedScene" path="res://camera.tscn" id="5_vuj02"]
-[ext_resource type="PackedScene" path="res://terrain_manager.tscn" id="5_xvisn"]
+[ext_resource type="PackedScene" path="res://cursor.tscn" id="1_lhu7a"]
+[ext_resource type="Script" path="res://start_button.gd" id="5_5tn4p"]
+[ext_resource type="PackedScene" uid="uid://bvo1ralh3j8y" path="res://camera.tscn" id="5_vuj02"]
+[ext_resource type="PackedScene" uid="uid://rw0j72pi1i6v" path="res://terrain_manager.tscn" id="5_xvisn"]
+[ext_resource type="Script" path="res://exit_button.gd" id="6_5ggr0"]
+[ext_resource type="Script" path="res://dead_menu.gd" id="7_3cemx"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="7_eksti"]
+[ext_resource type="Texture2D" uid="uid://drv1m7vo5q4vu" path="res://death_icon.png" id="7_yak46"]
+[ext_resource type="Texture2D" uid="uid://dx7n8nioodjjo" path="res://up_icon.png" id="8_vgteb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,3 +25,208 @@ camera = NodePath("../Camera2D")
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_vuj02")]
 player = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StartMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/StartMenu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 62.0
+offset_right = 559.0
+offset_bottom = 102.0
+bbcode_enabled = true
+text = "[center]TITLE OF THIS BEAUTIFUL GAME[center]"
+
+[node name="Start" type="Button" parent="CanvasLayer/StartMenu" node_paths=PackedStringArray("camera")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 228.0
+offset_right = 159.0
+offset_bottom = 259.0
+text = "Start
+"
+script = ExtResource("5_5tn4p")
+camera = NodePath("../../../Camera2D")
+
+[node name="Exit" type="Button" parent="CanvasLayer/StartMenu"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 270.0
+offset_right = 159.0
+offset_bottom = 301.0
+text = "Exit
+"
+script = ExtResource("6_5ggr0")
+
+[node name="Pause" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("start_menu", "dead_menu")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_eksti")
+start_menu = NodePath("../StartMenu")
+dead_menu = NodePath("../Dead")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Pause"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 62.0
+offset_right = 559.0
+offset_bottom = 102.0
+bbcode_enabled = true
+text = "[center]Paused[center]"
+
+[node name="Continue" type="Button" parent="CanvasLayer/Pause"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 197.0
+offset_right = 356.0
+offset_bottom = 228.0
+text = "Continue
+"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Pause"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 240.0
+offset_right = 356.0
+offset_bottom = 271.0
+text = "Exit
+"
+script = ExtResource("6_5ggr0")
+
+[node name="Dead" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("heightText", "killsText", "terrain_manager", "player", "camera")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_3cemx")
+heightText = NodePath("Height")
+killsText = NodePath("Kills")
+terrain_manager = NodePath("../../Terrain Manager")
+player = NodePath("../../Player")
+camera = NodePath("../../Camera2D")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Dead"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Dead"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 62.0
+offset_right = 559.0
+offset_bottom = 102.0
+bbcode_enabled = true
+text = "[center]YOU DIED :([center]"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Dead"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 106.0
+offset_right = 363.0
+offset_bottom = 146.0
+texture = ExtResource("7_yak46")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Dead"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 106.0
+offset_right = 274.0
+offset_bottom = 146.0
+texture = ExtResource("8_vgteb")
+stretch_mode = 2
+
+[node name="Height" type="RichTextLabel" parent="CanvasLayer/Dead"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 103.0
+offset_right = 756.0
+offset_bottom = 143.0
+bbcode_enabled = true
+text = "1000"
+
+[node name="Kills" type="RichTextLabel" parent="CanvasLayer/Dead"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 347.0
+offset_top = 103.0
+offset_right = 847.0
+offset_bottom = 143.0
+bbcode_enabled = true
+text = "1000"
+
+[node name="Restart" type="Button" parent="CanvasLayer/Dead"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 197.0
+offset_right = 356.0
+offset_bottom = 228.0
+text = "Restart
+"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Dead"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 256.0
+offset_top = 240.0
+offset_right = 356.0
+offset_bottom = 271.0
+text = "Exit
+"
+script = ExtResource("6_5ggr0")
+
+[connection signal="pressed" from="CanvasLayer/StartMenu/Start" to="CanvasLayer/StartMenu/Start" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartMenu/Exit" to="CanvasLayer/StartMenu/Exit" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Continue" to="CanvasLayer/Pause" method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Exit" to="CanvasLayer/Pause/Exit" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Dead/Restart" to="CanvasLayer/Dead" method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/Dead/Exit" to="CanvasLayer/Dead/Exit" method="_on_pressed"]
