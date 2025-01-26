@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyfcsagfe1gl0"]
+[gd_scene load_steps=5 format=3 uid="uid://dyfcsagfe1gl0"]
 
 [ext_resource type="Script" path="res://spikes.gd" id="1_on68v"]
 [ext_resource type="Texture2D" uid="uid://dy1ghof4ud5ja" path="res://icon.svg" id="2_ovxgk"]
+[ext_resource type="TileSet" uid="uid://bgt4iqqwwdaui" path="res://map_tileset.tres" id="2_t4qb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e83tq"]
 radius = 18.0
@@ -13,7 +14,12 @@ script = ExtResource("1_on68v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e83tq")
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 255, 255, 0, 0, 1, 0, 8, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 9, 0, 2, 0, 0, 0, 255, 255, 255, 255, 1, 0, 8, 0, 1, 0, 0, 0, 0, 0, 255, 255, 1, 0, 9, 0, 1, 0, 0, 0)
+tile_set = ExtResource("2_t4qb2")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.3125, 0.3125)
 texture = ExtResource("2_ovxgk")
 
