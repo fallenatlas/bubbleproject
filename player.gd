@@ -17,6 +17,8 @@ var shader_way : float = 1
 var reset_position : Vector2
 var reset_oxygen
 
+var bubble_offset : Vector2 = Vector2(0, 0)
+
 func _ready() -> void:
 	reset_position = global_position
 	reset_oxygen = oxygen
@@ -79,27 +81,35 @@ func _physics_process(delta: float) -> void:
 			$AnimationPlayer.play("horizontal")
 			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.flip_v = false
+			bubble_offset = Vector2(-1, 0)
 		Vector2.RIGHT:
 			$AnimationPlayer.play("horizontal")
 			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.flip_v = false
+			bubble_offset = Vector2(1, 0)
 		Vector2.UP:
 			$AnimationPlayer.play("vertical")
 			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.flip_v = false
+			bubble_offset = Vector2(0, -1)
 		Vector2.DOWN:
 			$AnimationPlayer.play("vertical")
 			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.flip_v = true
+			bubble_offset = Vector2(0, 1)
 		_:
 			if direction.x > 0 and direction.y < 0:
 				$AnimationPlayer.play("diagonal_ur")
+				bubble_offset = Vector2(1, -1)
 			elif direction.x < 0 and direction.y < 0:
 				$AnimationPlayer.play("diagonal_ul")
+				bubble_offset = Vector2(-1, -1)
 			elif direction.x > 0 and direction.y > 0:
 				$AnimationPlayer.play("diagonal_dr")
+				bubble_offset = Vector2(1, 1)
 			elif direction.x < 0 and direction.y > 0:
 				$AnimationPlayer.play("diagonal_dl")
+				bubble_offset = Vector2(-1, 1)
 	
 	velocity = velocity.lerp(input * speed, delta)
 	move_and_slide()
@@ -119,3 +129,13 @@ func get_shader_alpha(delta : float) -> float:
 		
 	shader_alpha += delta * shader_way
 	return shader_alpha
+
+
+func _on_timer_timeout() -> void:
+	#instance bubble scene
+	if (healing or dead):
+		return
+	
+	var bubble = preload("res://air_bubble.tscn").instantiate()
+	bubble.global_position = global_position + bubble_offset * 15 + (global_transform.x * randf_range(-5, 5))
+	get_tree().root.add_child(bubble)

@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (locked):
 		return
-	global_position = global_position.lerp(player.global_position, speed * delta)
+	global_position = global_position.lerp(player.global_position - Vector2(0, 70), speed * delta)
 
 func unlock() -> void:
 	locked = false

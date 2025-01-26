@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 		spawn_zone()
 		delete_zone()
 		camera.limit_bottom = MAP_SIZE_Y * (current_zone - 3)
-		
 
 func spawn_zone() -> void:
 	current_zone += 1

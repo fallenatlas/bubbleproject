@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt83bklnupgfi"]
+
+[ext_resource type="Texture2D" uid="uid://dve2n5nwmdhkl" path="res://air_bubble.png" id="1_fjma0"]
+[ext_resource type="Script" path="res://air_bubble.gd" id="2_7j4wx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiyhc"]
+atlas = ExtResource("1_fjma0")
+region = Rect2(0, 0, 15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gudap"]
+atlas = ExtResource("1_fjma0")
+region = Rect2(15, 0, 15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2d82"]
+atlas = ExtResource("1_fjma0")
+region = Rect2(30, 0, 15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jh4f"]
+atlas = ExtResource("1_fjma0")
+region = Rect2(45, 0, 15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8lfg"]
+atlas = ExtResource("1_fjma0")
+region = Rect2(0, 0, 15, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vb2ce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiyhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gudap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2d82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jh4f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8lfg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="Air Bubble" type="AnimatedSprite2D"]
+z_index = -1
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_vb2ce")
+autoplay = "up"
+script = ExtResource("2_7j4wx")
