@@ -5,10 +5,14 @@ extends CharacterBody2D
 @export var oxygen_rate: float
 
 var oxygen = 100.0
+var no_oxygen_timer = 3.0
 var direction = Vector2.RIGHT
 
 var dead : bool = false
-var healing : bool = false
+var healing : bool = true
+
+var shader_alpha : float = 0.0
+var shader_way : float = 1
 
 var reset_position : Vector2
 var reset_oxygen
@@ -20,15 +24,18 @@ func _ready() -> void:
 	Events.syphon.connect(_on_syphoned)
 	Events.air_entered.connect(_on_air_entered)
 	Events.air_exited.connect(_on_air_exited)
+	Events.start.connect(_on_start)
 
 func reset() -> void:
 	global_position = reset_position
 	oxygen = reset_oxygen
 	dead = false
+	no_oxygen_timer = 3.0
 
 func _on_air_entered() -> void:
 	oxygen = 100.0
 	healing = true
+	no_oxygen_timer = 3.0
 
 func _on_air_exited() -> void:
 	healing = false
@@ -40,6 +47,9 @@ func _on_dead() -> void:
 func _on_syphoned(amount : float) -> void:
 	oxygen -= amount
 
+func _on_start() -> void:
+	healing = false
+
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
@@ -49,7 +59,9 @@ func _physics_process(delta: float) -> void:
 	print(oxygen)
 	
 	if oxygen <= 0:
-		Events.emit_signal("dead")
+		no_oxygen_timer -= delta
+		if no_oxygen_timer <= 0:
+			Events.emit_signal("dead")
 	
 	var input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input.length() != 0:
@@ -91,3 +103,19 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = velocity.lerp(input * speed, delta)
 	move_and_slide()
+
+func get_shader_alpha(delta : float) -> float:
+	if oxygen > 0:
+		shader_alpha = 0.0
+		return 0.0
+	
+	if dead:
+		return 1.0
+	
+	if (shader_alpha >= 1):
+		shader_way = -1
+	elif (shader_alpha <= 0):
+		shader_way = 1
+		
+	shader_alpha += delta * shader_way
+	return shader_alpha

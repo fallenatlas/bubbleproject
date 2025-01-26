@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://b4fxsm0uvbbot"]
+[gd_scene load_steps=8 format=4 uid="uid://b4fxsm0uvbbot"]
 
 [ext_resource type="Texture2D" uid="uid://vvrqupfx7knf" path="res://tilemap.png" id="1_8474t"]
-[ext_resource type="PackedScene" uid="uid://b1xhcdwn7n4g7" path="res://spikes.tscn" id="1_gclcc"]
+[ext_resource type="PackedScene" uid="uid://dyfcsagfe1gl0" path="res://spikes.tscn" id="1_gclcc"]
 [ext_resource type="PackedScene" uid="uid://bqeien8m4eqsj" path="res://follow_enemy.tscn" id="2_w6d7r"]
-[ext_resource type="PackedScene" uid="uid://cfq62vg3t8wdd" path="res://jelly_fish.tscn" id="4_wgxuc"]
+[ext_resource type="PackedScene" uid="uid://bklmutripej2d" path="res://jelly_fish.tscn" id="4_wgxuc"]
+[ext_resource type="PackedScene" uid="uid://b4lqp4bhsgp4p" path="res://air_pocket.tscn" id="5_78rnt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_moy66"]
 texture = ExtResource("1_8474t")
@@ -72,3 +73,7 @@ rotation = -1.5708
 [node name="Jelly fish6" parent="." instance=ExtResource("4_wgxuc")]
 position = Vector2(468, 349)
 rotation = -1.5708
+
+[node name="AirPocket" parent="." instance=ExtResource("5_78rnt")]
+position = Vector2(320, 209)
+scale = Vector2(2.94, 1.43)

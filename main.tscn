@@ -1,14 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://cophdm2m7782b"]
+[gd_scene load_steps=19 format=3 uid="uid://cophdm2m7782b"]
 
 [ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
+[ext_resource type="Shader" path="res://vignette.gdshader" id="4_p5tf7"]
 [ext_resource type="Script" path="res://start_button.gd" id="5_5tn4p"]
+[ext_resource type="Script" path="res://shader_node.gd" id="5_as8tj"]
 [ext_resource type="PackedScene" uid="uid://bvo1ralh3j8y" path="res://camera.tscn" id="5_vuj02"]
-[ext_resource type="PackedScene" path="res://terrain_manager.tscn" id="5_xvisn"]
+[ext_resource type="PackedScene" uid="uid://rw0j72pi1i6v" path="res://terrain_manager.tscn" id="5_xvisn"]
 [ext_resource type="Script" path="res://exit_button.gd" id="6_5ggr0"]
 [ext_resource type="Script" path="res://dead_menu.gd" id="7_3cemx"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="7_eksti"]
 [ext_resource type="Texture2D" uid="uid://drv1m7vo5q4vu" path="res://death_icon.png" id="7_yak46"]
 [ext_resource type="Texture2D" uid="uid://dx7n8nioodjjo" path="res://up_icon.png" id="8_vgteb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flnrk"]
+shader = ExtResource("4_p5tf7")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.2
+shader_parameter/outer_radius = 2.0
 
 [sub_resource type="Animation" id="Animation_toejm"]
 length = 0.001
@@ -86,6 +94,18 @@ camera = NodePath("../Camera2D")
 player = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_flnrk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("5_as8tj")
+player = NodePath("../../Player")
 
 [node name="StartMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3

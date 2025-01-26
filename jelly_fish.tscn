@@ -77,7 +77,7 @@ rotation = 2.35619
 scale = Vector2(0.453846, 0.453846)
 sprite_frames = SubResource("SpriteFrames_mt7p7")
 autoplay = "default"
-frame_progress = 0.634388
+frame_progress = 0.69131
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

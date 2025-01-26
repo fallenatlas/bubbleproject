@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1ghof4ud5ja" path="res://icon.svg" id="2_ovxgk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e83tq"]
-radius = 20.0998
+radius = 18.0
 
 [node name="Spikes" type="Area2D"]
 collision_layer = 16
