@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dy1ghof4ud5ja" path="res://icon.svg" id="2_vn3w3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjxsv"]
-radius = 14.0
-height = 48.0
+radius = 11.0
+height = 42.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_km0wq"]
-radius = 15.0
-height = 50.0
+radius = 12.0
+height = 44.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -18,8 +18,8 @@ motion_mode = 1
 script = ExtResource("1_8jwng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.499999, 0)
-scale = Vector2(0.351563, 0.21875)
+position = Vector2(1.49012e-06, -2.08616e-07)
+scale = Vector2(0.328125, 0.1875)
 texture = ExtResource("2_vn3w3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

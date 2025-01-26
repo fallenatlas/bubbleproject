@@ -17,7 +17,7 @@ sources/1 = SubResource("TileSetAtlasSource_moy66")
 [node name="Terrain" type="Node2D"]
 
 [node name="Spikes" parent="." instance=ExtResource("1_c45hg")]
-position = Vector2(417, 196)
+position = Vector2(417, 193)
 rotation = 2.66856
 
 [node name="Spikes7" parent="." instance=ExtResource("1_c45hg")]
@@ -28,20 +28,16 @@ rotation = 2.0218
 position = Vector2(97, 243)
 rotation = 2.0218
 
-[node name="Spikes5" parent="." instance=ExtResource("1_c45hg")]
-position = Vector2(463, 131)
-rotation = 0.396155
-
 [node name="Spikes6" parent="." instance=ExtResource("1_c45hg")]
 position = Vector2(494, 16)
 rotation = -0.811714
 
 [node name="Spikes4" parent="." instance=ExtResource("1_c45hg")]
-position = Vector2(596, 104)
+position = Vector2(604, 105)
 rotation = 4.65573
 
 [node name="Spikes3" parent="." instance=ExtResource("1_c45hg")]
-position = Vector2(497, 243)
+position = Vector2(498, 245)
 rotation = 0.320886
 
 [node name="Spikes2" parent="." instance=ExtResource("1_c45hg")]
