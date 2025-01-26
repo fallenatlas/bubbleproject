@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc38w8p021tuq"]
+[gd_scene load_steps=10 format=3 uid="uid://cc38w8p021tuq"]
 
 [ext_resource type="Texture2D" uid="uid://devjyvgl7xi53" path="res://bubble.png" id="1_7bmn7"]
 [ext_resource type="Script" path="res://bubble.gd" id="1_wgwpu"]
+[ext_resource type="AudioStream" uid="uid://cmgu5tb0n01s0" path="res://Pop.mp3" id="3_1awth"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ud05y"]
 atlas = ExtResource("1_7bmn7")
@@ -55,5 +56,8 @@ sprite_frames = SubResource("SpriteFrames_jcnfv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jsf5f")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1awth")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

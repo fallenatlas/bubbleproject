@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://btp5q3hf1yijs"]
+[gd_scene load_steps=27 format=3 uid="uid://btp5q3hf1yijs"]
 
 [ext_resource type="Texture2D" uid="uid://bdoxhpvynu6ly" path="res://player.png" id="1_83s84"]
 [ext_resource type="Script" path="res://player.gd" id="1_qnhml"]
+[ext_resource type="AudioStream" uid="uid://c8gmlg5flr1ym" path="res://Attack.mp3" id="3_cdena"]
+[ext_resource type="AudioStream" uid="uid://85ldqlh44qie" path="res://Air_Refill.mp3" id="4_g582w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alxcg"]
 atlas = ExtResource("1_83s84")
@@ -623,5 +625,11 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.8
 autostart = true
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cdena")
+
+[node name="Refill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_g582w")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

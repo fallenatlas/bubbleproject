@@ -35,6 +35,7 @@ func reset() -> void:
 	no_oxygen_timer = 3.0
 
 func _on_air_entered() -> void:
+	$Refill.play()
 	oxygen = 100.0
 	healing = true
 	no_oxygen_timer = 3.0
@@ -70,6 +71,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot_bubble"):
 		oxygen -= 10.0
+		$Attack.play()
 		var bubble = preload("res://bubble.tscn").instantiate()
 		bubble.translate(position + direction * 32)
 		bubble.linear_velocity = velocity + direction * bubble_speed

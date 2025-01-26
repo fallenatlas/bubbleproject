@@ -1,13 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://cophdm2m7782b"]
+[gd_scene load_steps=26 format=3 uid="uid://cophdm2m7782b"]
 
 [ext_resource type="PackedScene" uid="uid://btp5q3hf1yijs" path="res://player.tscn" id="1_6qd78"]
 [ext_resource type="Texture2D" uid="uid://cvnlnm2iecojr" path="res://Submarino.PNG" id="1_7h20i"]
 [ext_resource type="Shader" path="res://vignette.gdshader" id="4_p5tf7"]
 [ext_resource type="Script" path="res://start_button.gd" id="5_5tn4p"]
 [ext_resource type="Script" path="res://shader_node.gd" id="5_as8tj"]
-[ext_resource type="Texture2D" uid="uid://du2sbvdjmpqfc" path="res://oxygen_bar.tres" id="5_v8hly"]
+[ext_resource type="Texture2D" uid="uid://b6qhju6may05r" path="res://oxygen_bar.tres" id="5_v8hly"]
 [ext_resource type="PackedScene" uid="uid://bvo1ralh3j8y" path="res://camera.tscn" id="5_vuj02"]
-[ext_resource type="PackedScene" uid="uid://rw0j72pi1i6v" path="res://terrain_manager.tscn" id="5_xvisn"]
+[ext_resource type="PackedScene" path="res://terrain_manager.tscn" id="5_xvisn"]
 [ext_resource type="Script" path="res://exit_button.gd" id="6_5ggr0"]
 [ext_resource type="Script" path="res://dead_menu.gd" id="7_3cemx"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="7_eksti"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://drv1m7vo5q4vu" path="res://death_icon.png" id="7_yak46"]
 [ext_resource type="Texture2D" uid="uid://dx7n8nioodjjo" path="res://up_icon.png" id="8_vgteb"]
 [ext_resource type="Script" path="res://oxygen_bar.gd" id="12_juefj"]
+[ext_resource type="AudioStream" uid="uid://nwjmc3b32nva" path="res://Ambience.ogg" id="17_fqc2q"]
+[ext_resource type="Script" path="res://audio_stream_player.gd" id="18_amxd8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_flnrk"]
 shader = ExtResource("4_p5tf7")
@@ -380,6 +382,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_ip2r0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_fqc2q")
+script = ExtResource("18_amxd8")
 
 [connection signal="pressed" from="CanvasLayer/StartMenu/Start" to="CanvasLayer/StartMenu/Start" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartMenu/Exit" to="CanvasLayer/StartMenu/Exit" method="_on_pressed"]
