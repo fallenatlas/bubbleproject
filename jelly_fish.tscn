@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfq62vg3t8wdd"]
+[gd_scene load_steps=13 format=3 uid="uid://bklmutripej2d"]
 
 [ext_resource type="Script" path="res://roam_enemy.gd" id="1_fs5t6"]
 [ext_resource type="Texture2D" uid="uid://conodxqjwruet" path="res://ALFORRECA_SPRITE.png" id="2_eyg22"]

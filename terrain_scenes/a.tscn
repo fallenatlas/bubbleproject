@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vvrqupfx7knf" path="res://tilemap.png" id="1_evwod"]
 [ext_resource type="PackedScene" uid="uid://bqeien8m4eqsj" path="res://follow_enemy.tscn" id="2_mwlwc"]
-[ext_resource type="PackedScene" uid="uid://cfq62vg3t8wdd" path="res://jelly_fish.tscn" id="3_hiww7"]
+[ext_resource type="PackedScene" uid="uid://bklmutripej2d" path="res://jelly_fish.tscn" id="3_hiww7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_moy66"]
 texture = ExtResource("1_evwod")
