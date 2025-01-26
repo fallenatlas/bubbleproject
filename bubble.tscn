@@ -1,19 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc38w8p021tuq"]
+[gd_scene load_steps=9 format=3 uid="uid://cc38w8p021tuq"]
 
-[ext_resource type="Texture2D" uid="uid://eec7gvcixsfg" path="res://bubble.png" id="1_7bmn7"]
+[ext_resource type="Texture2D" uid="uid://devjyvgl7xi53" path="res://bubble.png" id="1_7bmn7"]
 [ext_resource type="Script" path="res://bubble.gd" id="1_wgwpu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud05y"]
+atlas = ExtResource("1_7bmn7")
+region = Rect2(1, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki7eb"]
+atlas = ExtResource("1_7bmn7")
+region = Rect2(16, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahtt1"]
+atlas = ExtResource("1_7bmn7")
+region = Rect2(31, 1, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcrf0"]
+atlas = ExtResource("1_7bmn7")
+region = Rect2(46, 1, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcnfv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud05y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahtt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcrf0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jsf5f"]
+size = Vector2(16, 16)
 
 [node name="Bubble" type="RigidBody2D"]
 gravity_scale = -0.5
+lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_wgwpu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7bmn7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jcnfv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jsf5f")

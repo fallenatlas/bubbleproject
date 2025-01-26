@@ -13,3 +13,5 @@ signal syphon(amount : float)
 signal air_entered()
 
 signal air_exited()
+
+signal enemy_killed()

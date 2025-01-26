@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	
 	if not healing:
 		oxygen -= oxygen_rate
-	print(oxygen)
 	
 	if oxygen <= 0:
 		no_oxygen_timer -= delta

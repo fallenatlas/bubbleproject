@@ -91,6 +91,30 @@ func _physics_process(delta: float) -> void:
 	
 	self.look_at(global_position + velocity)
 	
+	if -135 < rotation_degrees and rotation_degrees < -45:
+		$AnimatedSprite2D.play("up")
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.rotation_degrees = 90
+	elif -45 < rotation_degrees and rotation_degrees < 45:
+		if chase_player != null:
+			$AnimatedSprite2D.play("attack")
+		else:
+			$AnimatedSprite2D.play("horizontal")
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.rotation_degrees = 0
+	elif 45 < rotation_degrees and rotation_degrees < 135:
+		$AnimatedSprite2D.play("down")
+		$AnimatedSprite2D.flip_v = true
+		$AnimatedSprite2D.rotation_degrees = 90
+	else:
+		if chase_player != null:
+			$AnimatedSprite2D.play("attack")
+		else:
+			$AnimatedSprite2D.play("horizontal")
+		$AnimatedSprite2D.flip_v = true
+		$AnimatedSprite2D.rotation_degrees = 0
+
+	#position += velocity * delta
 	move_and_slide()
 
 
@@ -102,4 +126,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("kill")
 		Events.emit_signal("dead")
 	elif bubble != null:
+		Events.emit_signal("enemy_killed")
 		queue_free()
