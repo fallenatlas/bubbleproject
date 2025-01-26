@@ -22,6 +22,7 @@ func _on_body_entered(body: Node) -> void:
 		Events.emit_signal("enemy_kill")
 	
 	set_deferred("freeze", true)
+	get_node("CollisionShape2D").set_deferred("disabled", true)
 	$AnimatedSprite2D.play()
 	await get_tree().create_timer(0.4).timeout
 	queue_free()
